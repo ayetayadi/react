@@ -21,10 +21,11 @@ function delay(ms) {
 }
 
 export const fetchTasks = async () => {
-  await delay(3000)
-  // throw new Error("No tasks")
+  await delay(1000)
+  //throw new Error("No tasks")
   return tasks
 }
+
 export const fetchTasksByFilter = async (searchValue) => {
   await delay(1000)
   return tasks.filter((task) => task.title.includes(searchValue))
