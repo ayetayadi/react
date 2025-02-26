@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./TaskForm.css";
 
 function TaskForm(props) {
@@ -10,6 +10,13 @@ function TaskForm(props) {
   const helpMe = () => {
     return <p> help please</p>; // will not work
   };
+
+  useEffect(
+    () => {
+    document.title = title;
+    console.log("useEffect")
+  }
+)
 
   function handleSubmit(e){
     e.preventDefault()

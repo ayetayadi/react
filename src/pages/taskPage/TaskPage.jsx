@@ -1,26 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskForm from "../../components/taskForm/TaskForm";
 import TasksList from "../../components/tasksList/TasksList";
+import * as api from "../../services/tasks.service"
 
 function TaskPage() {
   const [isVisible, setIsVisible] = useState(true);
-  const [tasks, setTasks] = useState([
-    {
-      _id: "1",
-      title: "learn html",
-      duration: 20,
-    },
-    {
-      _id: "2",
-      title: "learn css",
-      duration: 30,
-    },
-    {
-      _id: "3",
-      title: "learn js",
-      duration: 60,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   const [editingTask, setEditingTask] = useState(null);
   const [updatedTitle, setUpdatedTitle] = useState("");
@@ -28,6 +13,15 @@ function TaskPage() {
 
   const steps = ["enter the title", "click on add button"];
   const loading = false;
+
+  async function fetchData() {
+    const result = await api.fetchTasks()
+    setTasks(result)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const handleVisibility = () => {
     setIsVisible(!isVisible);

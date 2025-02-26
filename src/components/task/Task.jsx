@@ -10,7 +10,8 @@ function Task(props) {
     props.deleteTask(props.id);
   }
 
-  function handleUpdate() {
+  function handleUpdate(e) {
+    e.preventDefault();
     props.updateTask(props.id, newTitle, newDuration);
     setIsEditing(false);
   }
