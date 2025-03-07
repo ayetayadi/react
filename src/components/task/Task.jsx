@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Task.css";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../App";
 
 function Task(props) {
   const [isEditing, setIsEditing] = useState(false);
@@ -16,8 +18,20 @@ function Task(props) {
     setIsEditing(false);
   }
 
+  //Appel de hook soit dans un composant, soit dehors
+  const navigate = useNavigate()
+  function handleClick() {
+    if(props.duration>=50){
+      navigate(props.id)
+    }
+  }
+
+  const user = useContext(UserContext)
+  console.log("user: ", user)
+  
   return (
     <div className="task" style={{ backgroundColor: "violet" }}>
+    {/* <Link to={`/tasks/${props.id}`}>
       <div className="title">
         {isEditing ? (
           <input
@@ -29,6 +43,9 @@ function Task(props) {
           newTitle
         )}
       </div>
+      </Link> */}
+      
+      <div className="title" onClick={handleClick}>{props.title}</div>
       <div className="duration">
         {isEditing ? (
           <input

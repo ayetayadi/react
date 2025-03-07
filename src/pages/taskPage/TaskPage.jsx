@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TaskForm from "../../components/taskForm/TaskForm";
 import TasksList from "../../components/tasksList/TasksList";
-import * as api from "../../services/tasks3.service"
+import * as api from "../../services/tasks.service"
 
 function TaskPage() {
   const [isVisible, setIsVisible] = useState(true);
